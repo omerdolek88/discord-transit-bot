@@ -1,27 +1,27 @@
-# Brain — Geliştirme Notları
+# Brain — Development Notes
 
-Bu dosya kullanıcıya değil, projeyi geliştirirken bana (ve Claude'a) yön vermek için. Kullanıcıya bakan açıklamalar README.md'de.
+This file isn't for end users — it's to guide ongoing development (me and Claude). User-facing docs live in README.md.
 
-## Mevcut durum
+## Current state
 
-- Tek dosya: [bot.py](bot.py) — discord.py + pyhafas (VSNProfile).
-- Token `.env`'deki `DISCORD_TOKEN` değişkeninden okunuyor (`python-dotenv`), kod içinde sabit değil.
-- Kullanıcıya dönen tüm mesajlar ve kod içi yorumlar Almanca — VSN bölgesindeki Discord kullanıcıları hedef kitle. Bu dili koru, Türkçe/İngilizce karıştırma.
-- Komutlar: `!test`, `!tren <istasyon adı>`.
-- `requirements.txt` henüz yok; README bundan bahsediyor ama dosya repoda mevcut değil.
+- Single file: [bot.py](bot.py) — discord.py + pyhafas (VSNProfile).
+- Token is read from `DISCORD_TOKEN` in `.env` (via `python-dotenv`), not hardcoded.
+- All user-facing messages and code comments are in German — target audience is Discord users in the VSN region. Keep this language; don't mix in Turkish/English.
+- Commands: `!test`, `!tren <station name>`.
+- No `requirements.txt` yet; the README references it but the file isn't in the repo.
 
-## Bilinen eksikler
+## Known gaps
 
-- `requirements.txt` eksik (discord.py, pyhafas, python-dotenv).
-- Tek dosyada her şey var; büyürse (yeni komutlar, başka API'ler) modüllere bölünmeli.
-- Hata yönetimi tek bir genel `except Exception` — API'ye özgü hata tipleri ayrılmamış.
-- Test yok.
+- Missing `requirements.txt` (discord.py, pyhafas, python-dotenv).
+- Everything lives in one file; should be split into modules if it grows (new commands, other APIs).
+- Error handling is a single generic `except Exception` — no API-specific error types.
+- No tests.
 
-## Kararlar / nedenleri
+## Decisions / why
 
-- DB (Deutsche Bahn) HAFAS profili yerine VSNProfile kullanılıyor çünkü DB sunucusu kapalı/kararsızdı.
-- Secrets `.env`'de tutuluyor, repoya commit edilmiyor (`.gitignore`'a `.env` eklendi).
+- Using VSNProfile instead of the DB (Deutsche Bahn) HAFAS profile because the DB server was down/unstable.
+- Secrets live in `.env`, not committed (`.env` added to `.gitignore`).
 
-## Sıradaki adımlar (henüz yapılmadı, fikir aşamasında)
+## Next steps (not done yet, just ideas)
 
-- `requirements.txt` ekle.
+- Add `requirements.txt`.
